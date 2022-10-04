@@ -14,30 +14,30 @@ import 'react-dates/lib/css/_datepicker.css';
 const store = configureStore();
 
 // Add Expenses
-store.dispatch(addExpense( 
-    { 
-        description: 'Water Bill',
-        note: 'water bill',
-        amount: 1000,
-        createAt: 2000
-    }
-));
-store.dispatch(addExpense( 
-    { 
-        description: 'Gas Bill',
-        note: 'Case bill',
-        amount: 100,
-        createAt: 5000
-    }
-));
-store.dispatch(addExpense( 
-    { 
-        description: 'Rent',
-        note: 'Rent Book',
-        amount: 10000,
-        createAt: 500
-    }
-));
+// store.dispatch(addExpense( 
+//     { 
+//         description: 'Water Bill',
+//         note: 'water bill',
+//         amount: 1000,
+//         createAt: 2000
+//     }
+// ));
+// store.dispatch(addExpense( 
+//     { 
+//         description: 'Gas Bill',
+//         note: 'Case bill',
+//         amount: 100,
+//         createAt: 5000
+//     }
+// ));
+// store.dispatch(addExpense( 
+//     { 
+//         description: 'Rent',
+//         note: 'Rent Book',
+//         amount: 10000,
+//         createAt: 500
+//     }
+// ));
 
 // store.dispatch(setTextFilter('water'));
 
@@ -45,9 +45,8 @@ store.dispatch(addExpense(
 //     store.dispatch(setTextFilter('bill'));
 // }, 3000);
 
-const state = store.getState();
-const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
-
+// const state = store.getState();
+// const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
 
 const appRoot = document.getElementById('root')
 const root = ReactDOM.createRoot(appRoot)
