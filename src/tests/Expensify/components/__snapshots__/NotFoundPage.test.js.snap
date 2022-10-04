@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render not found page correctly 1`] = `
+<div
+  style={
+    {
+      "textAlign": "center",
+    }
+  }
+>
+  <h1>
+    Not Found Page
+  </h1>
+  <h2>
+    404
+  </h2>
+  <NavLink
+    replace={true}
+    to="/"
+  >
+    Go back to Home Page -&gt;
+  </NavLink>
+</div>
+`;

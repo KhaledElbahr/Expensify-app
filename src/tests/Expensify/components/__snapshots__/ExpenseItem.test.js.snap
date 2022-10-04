@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Expense Item correctly 1`] = `
+<Fragment>
+  <li>
+    🗒️ 
+    This is some water
+  </li>
+  <li>
+    🔑 
+    Water
+  </li>
+  <li>
+    📏 
+    350
+  </li>
+  <li>
+    ⏱️ 
+    -345600000
+  </li>
+  <button
+    onClick={[Function]}
+  >
+    Edit
+  </button>
+  <button
+    onClick={[Function]}
+  >
+    Remove
+  </button>
+</Fragment>
+`;
