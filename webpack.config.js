@@ -1,40 +1,66 @@
 const path = require('path');
-// entry -> output
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const devMode = process.env.NODE_ENV === 'production';
 
-module.exports = {
-    entry: './src/app.js',
-    output: {
-        path: path.join(__dirname, 'public'),
-        filename: 'bundle.js'
-    },
-    module: {
-        rules: [
-            {
-                use: 'babel-loader',
-                test: /\.js$/,
-                exclude: /node_modules/
-            }, 
-            {
-                test: /\.s?[ac]ss$/,
-                use: [
-                    // [style-loader](/loaders/style-loader)
-                    { loader: 'style-loader' },
-                    // [css-loader](/loaders/css-loader)
-                    { loader: 'css-loader' },
-                    // Compiles Sass to CSS
-                    { loader: 'sass-loader' }
-                ],
-            }
-        ]
-    },
-    devServer: {
-        static: {
-          directory: path.join(__dirname, 'public'),
+const prodPlugins = [
+    new MiniCssExtractPlugin({
+        filename: "styles.css"
+    })
+    // new OptimizeCssAssetsPlugin({
+    //     assetNameRegExp: /\.optimize\.css$/g,
+    //     cssProcessor: require('cssnano'),
+    //     cssProcessorOptions: { discardComments: { removeAll: true } },
+    //     canPrint: true
+    // })
+];
+
+module.exports = (env) => {
+    return {
+        entry: './src/app.js',
+        output: {
+            path: path.join(__dirname, 'public'),
+            filename: 'bundle.js'
         },
-        historyApiFallback: true,
-        compress: true,
-        port: 9000,
-    },
-    devtool: 'eval-cheap-module-source-map',
-    mode: 'development',
-};
+        optimization: {
+            minimizer: prodPlugins,
+        },
+        plugins: prodPlugins,
+        module: {
+            rules: [
+                {
+                    use: 'babel-loader',
+                    test: /\.js$/,
+                    exclude: /node_modules/
+                },
+                {
+                    test: /\.s?[ac]ss$/,
+                    use: [
+                        devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                sourceMap: true
+                            }
+                        }, 
+                        {
+                            loader: 'sass-loader',
+                            options: {
+                                sourceMap: true
+                            }
+                        }
+                    ],
+                }
+            ]
+        },
+        devServer: {
+            static: {
+              directory: path.join(__dirname, 'public'),
+            },
+            historyApiFallback: true,
+            compress: true,
+            port: 9000,
+        },
+        mode: env.production ? 'production' : 'development',
+        devtool: env.production ? 'source-map' : 'inline-source-map',
+    };
+}
