@@ -1,7 +1,8 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { editExpense, removeExpense } from './../redux/actions/expenses';
-import { useNavigate } from 'react-router-dom';
+import { removeExpense } from './../redux/actions/expenses';
+import { Link } from 'react-router-dom';
+import moment from "moment";
+import numeral from "numeral";
 
 export const ExpenseItem = ({
     id, 
@@ -10,25 +11,18 @@ export const ExpenseItem = ({
     amount, 
     createAt,
     dispatch
-}) => {
-    // navigate = useNavigate();
-
-    return (
-        <>
-        <li>🗒️ {note}</li>
-        <li>🔑 {description}</li>
-        <li>📏 {amount}</li>
-        <li>⏱️ {createAt}</li>
-        <button 
-        onClick={(e) => {
-            // navigate(`/edit-expense/${id}`);
-        }}>Edit</button>
-        <button 
+}) => (
+    <div>
+        <h3>🗒️ {note}</h3>
+        <p>🔑 {description}</p>
+        <small>📏 {numeral(amount).format('$0,0.00')}</small>
+        <small>⏱️ {moment(createAt).format('D MMM YYYY')}</small>
+        <Link to={`/edit-expense/${id}`}>Edit</Link>
+        <button
         onClick={(e) => {
             dispatch(removeExpense({ id }))
         }}>Remove</button>
-    </>
-    )
-}    
+    </div>
+)
 
-export default connect()(ExpenseItem);
+export default (ExpenseItem);

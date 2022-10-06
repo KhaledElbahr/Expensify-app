@@ -1,32 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should render Expense Item correctly 1`] = `
-<Fragment>
-  <li>
+<div>
+  <h3>
     🗒️ 
     This is some water
-  </li>
-  <li>
+  </h3>
+  <p>
     🔑 
     Water
-  </li>
-  <li>
+  </p>
+  <small>
     📏 
-    350
-  </li>
-  <li>
+    $350.00
+  </small>
+  <small>
     ⏱️ 
-    -345600000
-  </li>
-  <button
-    onClick={[Function]}
+    28 Dec 1969
+  </small>
+  <Link
+    to="/edit-expense/2"
   >
     Edit
-  </button>
+  </Link>
   <button
     onClick={[Function]}
   >
     Remove
   </button>
-</Fragment>
+</div>
 `;
