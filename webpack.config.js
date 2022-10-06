@@ -6,19 +6,13 @@ const prodPlugins = [
     new MiniCssExtractPlugin({
         filename: "styles.css"
     })
-    // new OptimizeCssAssetsPlugin({
-    //     assetNameRegExp: /\.optimize\.css$/g,
-    //     cssProcessor: require('cssnano'),
-    //     cssProcessorOptions: { discardComments: { removeAll: true } },
-    //     canPrint: true
-    // })
 ];
 
 module.exports = (env) => {
     return {
         entry: './src/app.js',
         output: {
-            path: path.join(__dirname, 'public'),
+            path: path.join(__dirname, 'public', 'dist'),
             filename: 'bundle.js'
         },
         optimization: {
@@ -55,6 +49,9 @@ module.exports = (env) => {
         devServer: {
             static: {
               directory: path.join(__dirname, 'public'),
+            },
+            devMiddleware: {
+                publicPath: '/dist/'
             },
             historyApiFallback: true,
             compress: true,
