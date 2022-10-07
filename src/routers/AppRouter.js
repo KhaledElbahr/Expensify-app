@@ -4,6 +4,7 @@ import ExpenseList from './../Expensify/ExpenseList';
 import ExpenseListFilters from './../Expensify/ExpenseListFilters';
 import AddExpensePage from './../Expensify/AddExpensePage';
 import { EditExpensePage } from './../Expensify/EditExpensepage';
+import ExpensesSummary from './../Expensify/ExpensesSummary';
 
 export const Navbar = () => (
     <header>
@@ -20,6 +21,7 @@ export const Navbar = () => (
 export const HomePage = () => (
     <div>
         <ExpenseListFilters />
+        <ExpensesSummary />
         <ExpenseList />
     </div>
 )
