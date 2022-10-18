@@ -1,32 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should render Expense Item correctly 1`] = `
-<div>
-  <h3>
-    🗒️ 
-    This is some water
-  </h3>
-  <p>
-    🔑 
-    Water
-  </p>
-  <small>
-    📏 
-    $350.00
-  </small>
-  <small>
-    ⏱️ 
-    28 Dec 1969
-  </small>
-  <Link
-    to="/edit-expense/2"
-  >
-    Edit
-  </Link>
-  <button
-    onClick={[Function]}
-  >
-    Remove
-  </button>
-</div>
+<Link
+  className="list-item"
+  to="/edit-expense/2"
+>
+  <div>
+    <h3
+      className="list-item__title"
+    >
+      Water
+    </h3>
+    <small
+      className="list-item__sub-title"
+    >
+      28 Dec 1969
+    </small>
+  </div>
+  <div>
+    <h3
+      className="list-item__data"
+    >
+      $3.50
+    </h3>
+  </div>
+</Link>
 `;

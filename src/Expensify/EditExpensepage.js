@@ -11,22 +11,29 @@ export class EditExpensePage extends React.Component {
 
     onSubmit = (expense) => {
         this.props.editExpense(this.props.expense.id, expense);
-        // this.props.navigate('/');
+        this.props.navigate('/dashboard');
     }
 
     onRemoveExpense = () => {
         this.props.removeExpense({ id: this.props.expense.id });
-        // this.props.navigate('/');
+        this.props.navigate('/dashboard');
     }
 
     render() {
         return (
             <div>
-                <ExpenseForm 
-                expense={this.props.expense}
-                onSubmit={this.onSubmit} 
-                />
-                <button onClick={this.onRemoveExpense}>Remove</button>
+                <div className="page-header">
+                    <div className="container">
+                        <h2 className="page-header__title">Edit Expense</h2>
+                    </div>
+                </div>
+                <div className="container">
+                    <ExpenseForm 
+                    expense={this.props.expense}
+                    onSubmit={this.onSubmit}
+                    />
+                    <button className="button button--secondary" onClick={this.onRemoveExpense}>Remove Expense</button>
+                </div>
             </div> 
         )
     }
@@ -48,16 +55,20 @@ export class EditExpensePage extends React.Component {
 //     </div>
 // );
 
-const mapStateToProps = (state, props) => {
+const mapStateToProps = (state) => {
     return {
-        expense: state.expenses.find((expense) => expense.id === props.match.params.id)
+        expense: state.expenses.find((expense) => expense.id === window.location.href.split('/')[4])
     }
 }
 
-const mapDispatchToProps = (dispatch, props) => ({
-    editExpense: (id, expense) => dispatch(editExpense(id, expense)),
-    removeExpense: (id) => dispatch(removeExpense(id)),
-    navigate: useNavigate()
-});
+const mapDispatchToProps = (dispatch) => {
+    const navigate = useNavigate();
+    
+    return {
+        editExpense: (id, expense) => dispatch(editExpense(id, expense)),
+        removeExpense: (id) => dispatch(removeExpense(id)),
+        navigate: (toPath) => navigate(toPath),
+    }
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditExpensePage);

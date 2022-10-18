@@ -2,32 +2,64 @@
 
 exports[`should render ExpensesSummary with 1 expense correctly! 1`] = `
 <div>
-  <h3>
-    Expenses Summary
-  </h3>
-  <p>
-    Viewing 
-    1
-     
-    expense
-     totalling amount 
-    $235.00
-  </p>
+  <div
+    className="page-header"
+  >
+    <div
+      className="container"
+    >
+      <h1
+        className="page-header__title"
+      >
+        Viewing 
+        <span>
+          1
+        </span>
+         
+        expense
+         totalling amount 
+        <span>
+          $2.35
+        </span>
+      </h1>
+      <div
+        className="page-header__actions"
+      >
+        <AddExpenseLink />
+      </div>
+    </div>
+  </div>
 </div>
 `;
 
 exports[`should render ExpensesSummary with multiple expenses correctly! 1`] = `
 <div>
-  <h3>
-    Expenses Summary
-  </h3>
-  <p>
-    Viewing 
-    23
-     
-    expenses
-     totalling amount 
-    $235587558958.00
-  </p>
+  <div
+    className="page-header"
+  >
+    <div
+      className="container"
+    >
+      <h1
+        className="page-header__title"
+      >
+        Viewing 
+        <span>
+          23
+        </span>
+         
+        expenses
+         totalling amount 
+        <span>
+          $2,355,875,589.58
+        </span>
+      </h1>
+      <div
+        className="page-header__actions"
+      >
+        <AddExpenseLink />
+      </div>
+    </div>
+  </div>
 </div>
 `;

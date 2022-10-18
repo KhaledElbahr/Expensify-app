@@ -12,17 +12,15 @@ export const ExpenseItem = ({
     createAt,
     dispatch
 }) => (
-    <div>
-        <h3>🗒️ {note}</h3>
-        <p>🔑 {description}</p>
-        <small>📏 {numeral(amount).format('$0,0.00')}</small>
-        <small>⏱️ {moment(createAt).format('D MMM YYYY')}</small>
-        <Link to={`/edit-expense/${id}`}>Edit</Link>
-        <button
-        onClick={(e) => {
-            dispatch(removeExpense({ id }))
-        }}>Remove</button>
-    </div>
+    <Link className="list-item" to={`/edit-expense/${id}`}>
+        <div>
+            <h3 className="list-item__title">{description}</h3>
+            <small className="list-item__sub-title">{moment(createAt).format('D MMM YYYY')}</small>
+        </div>
+        <div>
+            <h3 className="list-item__data">{numeral(amount / 100).format('$0,0.00')}</h3> 
+        </div>
+    </Link>
 )
 
 export default (ExpenseItem);

@@ -1,24 +1,46 @@
 .header {
-    background-color: $off-black;
-    color: #fff;
-    margin-bottom: $m-size;
-    padding: $m-size 0;
+    background-color: $dark-blue;
+}
+
+.header__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $s-size 0;
 }
 
 .header__title {
-    font-size: $l-size;
-    margin: 0;
-}
+    color: white;
+    text-decoration: none;
 
-.header__subtitle {
-    color: $off-white;
-    font-size: $m-size;
-    font-weight: 500;
-    margin: 0;
-}
-
-@media (min-width: $desktop-breakpoint) {
-    .header {
-        margin-bottom: $xl-size;
+    h1{
+        margin: 0;
     }
 }
+
+// Indecison App
+
+// .header {
+//     background-color: $off-black;
+//     color: #fff;
+//     margin-bottom: $m-size;
+//     padding: $m-size 0;
+// }
+
+// .header__title {
+//     font-size: $l-size;
+//     margin: 0;
+// }
+
+// .header__subtitle {
+//     color: $off-white;
+//     font-size: $m-size;
+//     font-weight: 500;
+//     margin: 0;
+// }
+
+// @media (min-width: $desktop-breakpoint) {
+//     .header {
+//         margin-bottom: $xl-size;
+//     }
+// }

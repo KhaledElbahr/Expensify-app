@@ -38,33 +38,42 @@ export class ExpenseListFilters extends React.Component {
 
     render () {
     return (
-      <div>
-        <input
-          type='text'
-          value={this.props.filters.text}
-          onChange={this.onTextChange}
-        />
-
-        <select
-          value={this.props.filters.sortBy}
-          onChange={this.onSortChange}
-        >
-          <option value='date'>Date</option>
-          <option value='amount'>Amount</option>
-        </select>
-
-        <DateRangePicker
-        startDate={this.props.filters.startDate}
-        endDate={this.props.filters.endDate}
-        // startDateId={uuid()}
-        // endDateId={uuid()}
-        onDatesChange={this.onDatesChange}
-        focusedInput={this.state.calendarFocused}
-        onFocusChange={this.onFocusChange}
-        showClearDates={true}
-        numberOfMonths={1}
-        isOutsideRange={() => false}
-        />
+      <div className="container">
+        <div className="input-group">
+          <div className="input-control">
+            <input
+            type='text'
+            className="text-input"
+            value={this.props.filters.text}
+            onChange={this.onTextChange}
+            placeholder="Search expenses"
+            />
+          </div>
+          <div className="input-control">
+            <select
+            className="select"
+            value={this.props.filters.sortBy}
+            onChange={this.onSortChange}
+            >
+              <option value='date'>Date</option>
+              <option value='amount'>Amount</option>
+            </select>
+          </div>
+          <div className="input-control">
+            <DateRangePicker
+            startDate={this.props.filters.startDate}
+            endDate={this.props.filters.endDate}
+            startDateId={uuid()}
+            endDateId={uuid()}
+            onDatesChange={this.onDatesChange}
+            focusedInput={this.state.calendarFocused}
+            onFocusChange={this.onFocusChange}
+            showClearDates={true}
+            numberOfMonths={1}
+            isOutsideRange={() => false}
+            />
+          </div>
+        </div>
       </div>
     )
   }

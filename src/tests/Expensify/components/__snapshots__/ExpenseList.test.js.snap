@@ -1,44 +1,92 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should render ExpenseList with empty message 1`] = `
-<div>
-  <h2>
-    Expense List
-  </h2>
-  <p>
-    There is no Expenses!!
-  </p>
+<div
+  className="container"
+>
+  <div
+    className="list-header"
+  >
+    <div
+      className="mobile-view"
+    >
+      Expenses
+    </div>
+    <div
+      className="desktop-view"
+    >
+      Expenses
+    </div>
+    <div
+      className="desktop-view"
+    >
+      Amount
+    </div>
+  </div>
+  <div
+    className="list-body"
+  >
+    <div
+      className="list-item list-item--message"
+    >
+      <p>
+        There is no Expenses
+      </p>
+    </div>
+  </div>
 </div>
 `;
 
 exports[`should render ExpenseList with expenses 1`] = `
-<div>
-  <h2>
-    Expense List
-  </h2>
-  <ExpenseItem
-    amount={200}
-    createAt={0}
-    description="Rent"
-    id="1"
-    key="1"
-    note="This is Rent"
-  />
-  <ExpenseItem
-    amount={350}
-    createAt={-345600000}
-    description="Water"
-    id="2"
-    key="2"
-    note="This is some water"
-  />
-  <ExpenseItem
-    amount={800}
-    createAt={345600000}
-    description="Dress"
-    id="3"
-    key="3"
-    note="This is nice dress"
-  />
+<div
+  className="container"
+>
+  <div
+    className="list-header"
+  >
+    <div
+      className="mobile-view"
+    >
+      Expenses
+    </div>
+    <div
+      className="desktop-view"
+    >
+      Expenses
+    </div>
+    <div
+      className="desktop-view"
+    >
+      Amount
+    </div>
+  </div>
+  <div
+    className="list-body"
+  >
+    <ExpenseItem
+      amount={200}
+      createAt={0}
+      description="Rent"
+      id="1"
+      key="1"
+      note="This is Rent"
+    />
+    <ExpenseItem
+      amount={350}
+      createAt={-345600000}
+      description="Water"
+      id="2"
+      key="2"
+      note="This is some water"
+    />
+    <ExpenseItem
+      amount={800}
+      createAt={345600000}
+      description="Dress"
+      id="3"
+      key="3"
+      note="This is nice dress"
+    />
+  </div>
 </div>
 `;
