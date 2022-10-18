@@ -11,11 +11,6 @@ import Spinner from './Expensify/Spinner';
 import 'normalize.css/normalize.css';
 import 'react-dates/lib/css/_datepicker.css';
 import './styles/styles.scss';
-import { 
-    detectAddedExpenseData, 
-    detectUpdatedExpenseData, 
-    detectRemovedExpenseData 
-} from './firebase/firebase';
 
 const store = configureStore();
 
@@ -29,11 +24,6 @@ root.render(
             <AppRouter />
         </Provider>
 );
-
-detectAddedExpenseData()
-detectUpdatedExpenseData()
-detectRemovedExpenseData()
-// console.log(getExpenseData('-NEXbG-u6EKuq0wronQR'))
 
 // firebase.auth().onAuthStateChanged(user => {
 //     if(user) {
