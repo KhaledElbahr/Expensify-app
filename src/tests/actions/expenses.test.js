@@ -6,7 +6,8 @@ import { set, get, ref } from "firebase/database";
 import { 
     addExpense, 
     addExpenseData, 
-    editExpense, 
+    editExpense,
+    editExpenseData, 
     removeExpense, 
     removeExpenseData,
     setExpenses, 
@@ -61,6 +62,37 @@ test('should setup edit expense action object', () => {
         id: '123abc',
         updates: { amount: 500, updated: true }
     })
+});
+
+// TODO: test editExpense action
+test('should edit expense from firebase', (done) => {
+    const store = mockStore({});
+    const id = expenses[1].id;
+    const updates = {
+        description: 'Lemon', 
+        note: 'This is some lemon', 
+        amount: 550,
+    }
+    
+    store.dispatch(editExpenseData(id, updates))
+    .then(() => {
+        const actions = store.getActions();
+        expect(actions[0]).toEqual({
+            type: 'EDIT_EXPENSE',
+            id,
+            updates
+        })
+        return get(ref(db, `expenses/${id}`))
+    }).then((snapshot) => {
+        expect(snapshot.val()).toEqual({
+            description: 'Lemon', 
+            note: 'This is some lemon', 
+            amount: 550,
+            createAt: expenses[1].createAt
+        });
+        done();
+    })
+    
 });
 
 // TODO: test addExpense action
