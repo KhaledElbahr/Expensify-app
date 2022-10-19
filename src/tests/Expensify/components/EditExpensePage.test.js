@@ -4,15 +4,15 @@ import toJson from 'enzyme-to-json';
 import { EditExpensePage } from './../../../Expensify/EditExpensepage';
 import expenses from './../../fixtures/expenes';
 
-let editExpense, removeExpense, navigate, wrapper;
+let editExpense, removeExpenseData, navigate, wrapper;
 
 beforeEach(() => {
     editExpense = jest.fn();
-    removeExpense = jest.fn();
+    removeExpenseData = jest.fn();
     navigate = jest.fn();
     wrapper = shallow(<EditExpensePage
         editExpense={editExpense} 
-        removeExpense={removeExpense}
+        removeExpenseData={removeExpenseData}
         navigate={navigate}
         expense={expenses[1]}
         />);
@@ -28,10 +28,10 @@ test('should handle editExpense', () => {
     expect(editExpense).toHaveBeenLastCalledWith(expenses[1].id, expenses[1]);
 });
 
-test('should handle removeExpense', () => {
+test('should handle remove Expense', () => {
     wrapper.find('button').simulate('click');
     expect(navigate).toHaveBeenLastCalledWith('/dashboard');
-    expect(removeExpense).toHaveBeenLastCalledWith({
+    expect(removeExpenseData).toHaveBeenLastCalledWith({
         id: expenses[1].id
     });
 });

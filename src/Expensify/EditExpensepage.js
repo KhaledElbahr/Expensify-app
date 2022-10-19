@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ExpenseForm from './ExpenseForm';
-import { editExpense, removeExpense } from '../redux/actions/expenses';
+import { editExpense, removeExpenseData } from '../redux/actions/expenses';
 import { useNavigate } from 'react-router-dom';
 
 export class EditExpensePage extends React.Component {
@@ -15,7 +15,7 @@ export class EditExpensePage extends React.Component {
     }
 
     onRemoveExpense = () => {
-        this.props.removeExpense({ id: this.props.expense.id });
+        this.props.removeExpenseData({ id: this.props.expense.id });
         this.props.navigate('/dashboard');
     }
 
@@ -66,7 +66,7 @@ const mapDispatchToProps = (dispatch) => {
     
     return {
         editExpense: (id, expense) => dispatch(editExpense(id, expense)),
-        removeExpense: (id) => dispatch(removeExpense(id)),
+        removeExpenseData: (id) => dispatch(removeExpenseData(id)),
         navigate: (toPath) => navigate(toPath),
     }
 };

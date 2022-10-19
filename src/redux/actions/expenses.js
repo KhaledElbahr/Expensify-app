@@ -1,6 +1,6 @@
 import { v4 as uuid } from 'uuid';
 import db from './../../firebase/firebase';
-import { get, push, ref } from "firebase/database";
+import { get, push, ref, remove } from "firebase/database";
 // actions
 export const addExpense = (expense) => ({
   type: 'ADD_EXPENSE',
@@ -40,13 +40,24 @@ export const removeExpense = ({ id } = {}) => ({
   id
 })
 
+export const removeExpenseData = ({ id } = {}) => {
+  return (dispatch) => {
+    return remove(ref(db, `expenses/${id}`))
+    .then((snapshot) => {
+      dispatch(removeExpense({ id }))
+      console.log(`${id} expense is deleted successfully`)
+    })
+    .catch((e) => console.log('This failed', e))
+  }
+}
+
 // SET_EXPENSES
 export const setExpenses = (expenses) => ({
   type: 'SET_EXPENSES',
   expenses
 })
 
-// Add Expense Data
+// Set Expense Data
 export const setExpensesData = () => {
   return (dispatch) => {
 
