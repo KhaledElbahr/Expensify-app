@@ -1,6 +1,6 @@
 import { v4 as uuid } from 'uuid';
 import db from './../../firebase/firebase';
-import { push, ref } from "firebase/database";
+import { get, push, ref } from "firebase/database";
 // actions
 export const addExpense = (expense) => ({
   type: 'ADD_EXPENSE',
@@ -39,3 +39,33 @@ export const removeExpense = ({ id } = {}) => ({
   type: 'REMOVE_EXPENSE',
   id
 })
+
+// SET_EXPENSES
+export const setExpenses = (expenses) => ({
+  type: 'SET_EXPENSES',
+  expenses
+})
+
+// Add Expense Data
+export const setExpensesData = () => {
+  return (dispatch) => {
+
+    return get((ref(db, 'expenses/')))
+    .then((snapshot) => {
+      if(snapshot.exists()) {
+        const expenses = [];
+        
+        snapshot.forEach(child => {
+          expenses.push({
+            id: child.key,
+            ...child.val()
+          })
+        })
+        dispatch(setExpenses(expenses))
+      } else {
+        console.log('No data available')
+      }
+    })
+    .catch((e) => console.log('This failed', e))
+  }
+}

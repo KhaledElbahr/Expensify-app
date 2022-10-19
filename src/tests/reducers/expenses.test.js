@@ -63,3 +63,13 @@ test('should add expense object', () => {
         action.expense
      ])
 });
+
+test('should set expenses', () => {
+    const action = { 
+        type: 'SET_EXPENSES', 
+        expenses: [MockExpenses[1]]
+    };
+    const state = expensesReducer(MockExpenses, action);
+
+    expect(state).toEqual([MockExpenses[1]]);
+});

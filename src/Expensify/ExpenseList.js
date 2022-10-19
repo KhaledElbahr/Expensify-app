@@ -4,10 +4,7 @@ import ExpenseItem from './ExpenseItem';
 import selectedExpenses from '../redux/selectors/expenses';
 import { readExpenseData } from '../firebase/firebase';
 
-export const ExpenseList = (props) => {
-    // console.log('Expenses List', readExpenseData());
-    
-    return (
+export const ExpenseList = (props) => (
     <div className="container">
         <div className="list-header">
             <div className="mobile-view">Expenses</div>
@@ -27,7 +24,7 @@ export const ExpenseList = (props) => {
         )}
         </div>
     </div>
-)}
+)
 
 const mapStateToProps = (state) => {
     return {
