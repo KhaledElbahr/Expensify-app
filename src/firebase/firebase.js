@@ -1,5 +1,5 @@
-// import * as firebase from 'firebase';
 import { initializeApp } from 'firebase/app';
+import { getAuth, signInWithPopup, signOut, GoogleAuthProvider } from "firebase/auth";
 import { 
   getDatabase, 
   ref, 
@@ -33,10 +33,41 @@ const app = initializeApp(firebaseConfig);
 // Setup database
 const db = getDatabase(app);
 
+// Setup google Auth provider
+export const googleAuthProvider = new GoogleAuthProvider();
+
+export const auth = getAuth();
+
+const signIn = () => {
+  signInWithPopup(auth, provider)
+  .then((result) => {
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    // The signed-in user info.
+    const user = result.user;
+    // ...
+  }).catch((err) => {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // The email of the user's account used.
+      const email = error.customData.email;
+      // The AuthCredential type that was used.
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      // ...
+  })
+}
+
+const LogOut = () => {
+  signOut(auth).then(() => {
+    console.log('Sign-out successful')
+  }).catch((error) => {
+    console.log('An error happened');
+  });
+}
+
 export default db;
 
-// Setup google Auth provider
-// const googleAuthProvider = new firbase.auth.GoogleAuthProvider();
 
 // const readExpensesData = () => {
 //   const db = getDatabase();

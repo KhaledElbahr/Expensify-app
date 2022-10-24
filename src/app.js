@@ -3,10 +3,12 @@ import ReactDOM from 'react-dom/client';
 import IndecisionApp from './components/IndecisionApp';
 import AppRouter from "./routers/AppRouter";
 import { Provider } from 'react-redux';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import configureStore from './redux/store/configureStore';
 import { addExpense } from './redux/actions/expenses';
 import { setTextFilter } from './redux/actions/filters';
 import { setExpensesData } from './redux/actions/expenses';
+import { login, logout } from './redux/actions/auth';
 import getVisibleExpenses from './redux/selectors/expenses';
 import Spinner from './Expensify/Spinner';
 import 'normalize.css/normalize.css';
@@ -32,11 +34,14 @@ store.dispatch(setExpensesData()).then(() => {
 
 // root.render(<IndecisionApp />)
 
+const auth = getAuth();
+onAuthStateChanged(auth, (user) => {
+    user ? store.dispatch(login(user.uid)) : store.dispatch(logout());
+});
 
-// firebase.auth().onAuthStateChanged(user => {
-//     if(user) {
-//         console.log('log in');
-//     } else {
-//         console.log('log out');
-//     }
-// });
+
+// sendEmailVerification(auth.currentUser)
+//   .then(() => {
+//     // Email verification sent!
+//     // ...
+//   });

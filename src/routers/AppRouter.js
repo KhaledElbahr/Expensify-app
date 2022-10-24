@@ -6,9 +6,8 @@ import AddExpensePage from '../Expensify/AddExpensePage';
 import EditExpensePage from '../Expensify/EditExpensepage';
 import ExpensesSummary from '../Expensify/ExpensesSummary';
 import LoginPage from '../Expensify/LoginPage';
-import Header from '../Expensify/Header';
-
-const isLoggedin = false;
+import PrivateRoutes from './PrivateRoutes';
+import PublicRoutes from './PublicRoutes';
 
 export const Navbar = () => (
     <expenseheader>
@@ -51,27 +50,23 @@ export const NotFoundPage = () => (
 )
   
 const AppRouter = () => (
-    <Router>
-        {isLoggedin ? (
+        <div>
+        <Router>
             <Routes>
-                <Route path="/" element={<LoginPage />} />
-            </Routes>
-        ) :
-        (
-            <div>
-                {/* <Navbar /> */}
-                <Header />
-                <Routes>
-                    <Route path="/dashboard" element={<HomePage />} exact={true} />
+                <Route element={<PublicRoutes />}>
+                    <Route path="/" element={<LoginPage />} exact={true} />
+                </Route>
+                <Route element={<PrivateRoutes />}>
+                    <Route path="/dashboard" element={<HomePage />} />
                     <Route path="/add-expense" element={<AddExpensePage />} />
                     <Route path="/edit-expense/:id" element={<EditExpensePage />} />
-                    <Route path="/about" element={<AboutPage />} />
-                    <Route path="/contact-us" element={<ContactUsPage />} />
-                    <Route path="*" element={<NotFoundPage />} />
-                </Routes>
-            </div>
-        )}
-    </Router>
+                </Route>
+                {/* <Route path="/about" element={<AboutPage />} />
+                <Route path="/contact-us" element={<ContactUsPage />} /> */}
+                <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+        </Router>
+    </div>
 );
 
 export default AppRouter;
