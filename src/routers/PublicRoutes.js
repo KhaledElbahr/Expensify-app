@@ -4,7 +4,7 @@ import { Outlet, Navigate } from 'react-router-dom';
 import Header from '../Expensify/Header';
 
 export const PublicRoutes = ({ isAuthenticated }) => (
-    isAuthenticated ? <Navigate to="/dashboard" /> : (<> <Header /> <Outlet /> </>)
+    isAuthenticated ? <Navigate to="/dashboard" /> : <Outlet />
 );
 
 const mapStateToProps = (state) => ({

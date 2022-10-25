@@ -9,7 +9,9 @@ export const addExpense = (expense) => ({
 
 // Add Expense Data
 export const addExpenseData = (expenseData = {}) => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    console.log(getState());
+    const uid = getState().auth.uid;
     const {
       description = '',
       note = '',
@@ -18,7 +20,7 @@ export const addExpenseData = (expenseData = {}) => {
     } = expenseData;
     const expense = { description, note, amount, createAt };
 
-    return push(ref(db, 'expenses/'), expense)
+    return push(ref(db, `users/${uid}/expenses/`), expense)
     .then(data => {
       dispatch(addExpense({
         id: data.key,
@@ -36,8 +38,9 @@ export const editExpense = (id, updates) => ({
 })
 
 export const editExpenseData = (id, updates) => {
-  return (dispatch) => {
-    return update(ref(db, `expenses/${id}`), updates)
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+    return update(ref(db, `users/${uid}/expenses/${id}`), updates)
     .then((snapshot) => {
       dispatch(editExpense(id, updates));
       console.log(`${id} expense is updated successfully`);
@@ -52,8 +55,9 @@ export const removeExpense = ({ id } = {}) => ({
 })
 
 export const removeExpenseData = ({ id } = {}) => {
-  return (dispatch) => {
-    return remove(ref(db, `expenses/${id}`))
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+    return remove(ref(db, `users/${uid}/expenses/${id}`))
     .then((snapshot) => {
       dispatch(removeExpense({ id }))
       console.log(`${id} expense is deleted successfully`)
@@ -70,9 +74,10 @@ export const setExpenses = (expenses) => ({
 
 // Set Expense Data
 export const setExpensesData = () => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
 
-    return get((ref(db, 'expenses/')))
+    return get((ref(db, `users/${uid}/expenses/`)))
     .then((snapshot) => {
       if(snapshot.exists()) {
         const expenses = [];

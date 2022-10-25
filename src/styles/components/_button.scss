@@ -1,3 +1,7 @@
+.bototn--group {
+    width: 14rem;
+}
+
 .button {
     background: $blue;
     color: white;
@@ -6,10 +10,12 @@
     font-size: $font-size-lg;
     font-weight: 300;
     line-height: 1;
-    padding: $s-size;
+    padding: $s-size $m-size;
     text-decoration: none;
     transition: .3s;
     outline: 2px solid transparent;
+    cursor: pointer;
+    min-width: 14rem;
 
     &:hover {
         background: none;
@@ -27,8 +33,15 @@
     }
 }
 
-.button--secondary {
-    background: #888888;
+.button--danger {
+    margin-top: 1rem;
+    background: #e00b27;
+    
+    &:hover {
+        background: none;
+        color: #e00b27;
+        outline: 2px solid #e00b27;
+    }
 }
 
 .big-btn {

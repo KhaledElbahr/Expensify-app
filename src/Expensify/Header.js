@@ -10,6 +10,10 @@ export const Header = ({ startLogout, user }) => (
                 <Link to="/dashboard">
                     <h1 className="header__title">Expensify</h1>
                 </Link>
+                {/* {
+                    user()
+                } */}
+                {/* <img src={userImgURL} alt="user image" /> */}
                 <button className="button button--link" onClick={startLogout}>Logout</button>
             </div>
         </div>

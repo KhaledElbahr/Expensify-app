@@ -16,7 +16,7 @@ export const startLogin = () => {
         .then((result) => {
             const token = result.user.accessToken;
             const user = result.user;
-            return user;
+            // return user;
             // console.log(result);
             // console.log(token);
             // console.log(user);
@@ -33,7 +33,7 @@ export const startLogin = () => {
 export const startLogout = () => {
     return () => {
         return signOut(auth)
-        .then(() => console.log('Log-out successful'))
+        .then(() => console.log('Logged out'))
         .catch((error) => console.log('An error happened'));
     }
 }

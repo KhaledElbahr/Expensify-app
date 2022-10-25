@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom';
+import { createBrowserHistory } from "history";
 import ExpenseList from '../Expensify/ExpenseList';
 import ExpenseListFilters from '../Expensify/ExpenseListFilters';
 import AddExpensePage from '../Expensify/AddExpensePage';
@@ -48,10 +49,13 @@ export const NotFoundPage = () => (
         <NavLink to="/" replace>Go back to Home Page -></NavLink>
     </div>
 )
-  
-const AppRouter = () => (
+ 
+export const history = createBrowserHistory();
+
+const AppRouter = () => {
+    return (
         <div>
-        <Router>
+        <Router history={history}>
             <Routes>
                 <Route element={<PublicRoutes />}>
                     <Route path="/" element={<LoginPage />} exact={true} />
@@ -61,12 +65,11 @@ const AppRouter = () => (
                     <Route path="/add-expense" element={<AddExpensePage />} />
                     <Route path="/edit-expense/:id" element={<EditExpensePage />} />
                 </Route>
-                {/* <Route path="/about" element={<AboutPage />} />
-                <Route path="/contact-us" element={<ContactUsPage />} /> */}
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>
         </Router>
     </div>
-);
+    )
+};
 
 export default AppRouter;
